@@ -8,7 +8,7 @@ Um leitor de arquivos CNAB bancários
 
 ``` php
 $cnab = new Cnab(
-    new new SplFileObject('./data/CB010800.RET'), 
+    new SplFileObject('./data/CB010800.RET'), 
     ConfigBradesco::getLocations()
 );
 
