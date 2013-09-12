@@ -26,17 +26,17 @@ class CnabTest extends PHPUnit_Framework_TestCase
     {
         $header = $this->data['HEADER'][0];
         
-        $this->assertEquals(2, $header['IDENTIFICATION_FILE_RETURN']);
-        $this->assertEquals('RETORNO', $header['STRING_RETURN']);
-        $this->assertEquals('01', $header['SERVICE_CODE']);
-        $this->assertEquals('COBRANCA       ', $header['SERVICE_STRING']);
-        $this->assertEquals('00000000000000022850', $header['COMPANY_CODE']);
-        $this->assertEquals('ASSOC COML DE SAO PAULO       ', $header['COMPANY_NAME']);
-        $this->assertEquals(237, $header['BANK_CODE']);
-        $this->assertEquals('BRADESCO       ', $header['BANK_NAME']);
-        $this->assertEquals('310713', $header['RECORD_DATE']);
-        $this->assertEquals('06885', $header['WARN_BANK_NUMBER']);
-        $this->assertEquals('010813', $header['CREDIT_DATE']);
+        $this->assertEquals(2, $header['IDENTIFICACAO_DO_ARQUIVO_RETORNO']);
+        $this->assertEquals('RETORNO', $header['LITERAL_RETORNO']);
+        $this->assertEquals('01', $header['CODIGO_DO_SERVICO']);
+        $this->assertEquals('COBRANCA       ', $header['LITERAL_SERVICO']);
+        $this->assertEquals('00000000000000022850', $header['CODIGO_DA_EMPRESA']);
+        $this->assertEquals('ASSOC COML DE SAO PAULO       ', $header['NOME_DA_EMPRESA']);
+        $this->assertEquals(237, $header['CODIGO_DO_BANCO']);
+        $this->assertEquals('BRADESCO       ', $header['NOME_DO_BANCO']);
+        $this->assertEquals('310713', $header['DATA_DE_GRAVACAO_DO_ARQUIVO']);
+        $this->assertEquals('06885', $header['NUMERO_AVISO_BANCARIO']);
+        $this->assertEquals('010813', $header['DATA_DO_CREDITO']);
     }
     
     public function testParseDetail()
@@ -44,44 +44,44 @@ class CnabTest extends PHPUnit_Framework_TestCase
         $detail1 = $this->data['DETAIL'][0];
         $detail2 = $this->data['DETAIL'][1];
         
-        $this->assertEquals('02', $detail1['REGISTRATION_TYPE_COMPANY']);
-        $this->assertEquals('02', $detail2['REGISTRATION_TYPE_COMPANY']);
+        $this->assertEquals('02', $detail1['TIPO_DE_INSCRICAO_DA_EMPRESA']);
+        $this->assertEquals('02', $detail2['TIPO_DE_INSCRICAO_DA_EMPRESA']);
         
-        $this->assertEquals('60524550000131', $detail1['COMPANY_CODE']);
-        $this->assertEquals('60524550000131', $detail2['COMPANY_CODE']);
+        $this->assertEquals('60524550000131', $detail1['NUMERO_DE_INSCRICAO_DA_EMPRESA']);
+        $this->assertEquals('60524550000131', $detail2['NUMERO_DE_INSCRICAO_DA_EMPRESA']);
         
-        $this->assertEquals('000900099024048', $detail1['TRANSFEROR_COMPANY_IDENTIFICATION']);
-        $this->assertEquals('000900099024048', $detail2['TRANSFEROR_COMPANY_IDENTIFICATION']);
+        $this->assertEquals('000900099024048', $detail1['IDENTIFICACAO_DA_CEDENTE_NO_BANCO']);
+        $this->assertEquals('000900099024048', $detail2['IDENTIFICACAO_DA_CEDENTE_NO_BANCO']);
         
-        $this->assertEquals('2318439552               ', $detail1['PARTICIPANT_CONTROL_CODE']);
-        $this->assertEquals('2318439553               ', $detail2['PARTICIPANT_CONTROL_CODE']);
+        $this->assertEquals('2318439552               ', $detail1['NUMERO_CONTROLE_DO_PARTICIPANTE']);
+        $this->assertEquals('2318439553               ', $detail2['NUMERO_CONTROLE_DO_PARTICIPANTE']);
         
-        $this->assertEquals('23001952646P', $detail1['IDENTIFY_TITLE_BANK']);
-        $this->assertEquals('230019526478', $detail2['IDENTIFY_TITLE_BANK']);
+        $this->assertEquals('23001952646P', $detail1['IDENTIFICACAO_DO_TITULO_NO_BANCO']);
+        $this->assertEquals('230019526478', $detail2['IDENTIFICACAO_DO_TITULO_NO_BANCO']);
         
-        $this->assertEquals(9, $detail1['WALLET']);
-        $this->assertEquals(9, $detail2['WALLET']);
+        $this->assertEquals(9, $detail1['CARTEIRA']);
+        $this->assertEquals(9, $detail2['CARTEIRA']);
         
-        $this->assertEquals('02', $detail1['OCCURRENCE']);
-        $this->assertEquals('02', $detail2['OCCURRENCE']);
+        $this->assertEquals('02', $detail1['IDENTIFICACAO_DE_OCORRENCIA']);
+        $this->assertEquals('02', $detail2['IDENTIFICACAO_DE_OCORRENCIA']);
         
-        $this->assertEquals('310713', $detail1['OCCURRENCE_DATE']);
-        $this->assertEquals('310713', $detail2['OCCURRENCE_DATE']);
+        $this->assertEquals('310713', $detail1['DATA_DE_OCORRENCIA_NO_BANCO']);
+        $this->assertEquals('310713', $detail2['DATA_DE_OCORRENCIA_NO_BANCO']);
         
-        $this->assertEquals('2318439552', $detail1['DOCUMENT_NUMBER']);
-        $this->assertEquals('2318439553', $detail2['DOCUMENT_NUMBER']);
+        $this->assertEquals('2318439552', $detail1['NUMERO_DO_DOCUMENTO']);
+        $this->assertEquals('2318439553', $detail2['NUMERO_DO_DOCUMENTO']);
         
-        $this->assertEquals('230813', $detail1['EXPIRATION_DATE']);
-        $this->assertEquals('230913', $detail2['EXPIRATION_DATE']);
+        $this->assertEquals('230813', $detail1['DATA_DE_VENCIMENTO']);
+        $this->assertEquals('230913', $detail2['DATA_DE_VENCIMENTO']);
         
-        $this->assertEquals('0000000013167', $detail1['TITLE_VALUE']);
-        $this->assertEquals('0000000013166', $detail2['TITLE_VALUE']);
+        $this->assertEquals('0000000013167', $detail1['VALOR_DO_TITULO']);
+        $this->assertEquals('0000000013166', $detail2['VALOR_DO_TITULO']);
         
-        $this->assertEquals(237, $detail1['COLLECTING_BANK']);
-        $this->assertEquals(237, $detail2['COLLECTING_BANK']);
+        $this->assertEquals(237, $detail1['BANCO_COBRADOR']);
+        $this->assertEquals(237, $detail2['BANCO_COBRADOR']);
         
-        $this->assertEquals('04151', $detail1['COLLECTING_AGENCY']);
-        $this->assertEquals('04151', $detail2['COLLECTING_AGENCY']);
+        $this->assertEquals('04151', $detail1['AGENCIA_COBRADORA']);
+        $this->assertEquals('04151', $detail2['AGENCIA_COBRADORA']);
         
         $this->assertEquals('  ', $detail1['ESPECIE']);
         $this->assertEquals('  ', $detail2['ESPECIE']);        
@@ -91,8 +91,8 @@ class CnabTest extends PHPUnit_Framework_TestCase
     {
         $trailler = $this->data['TRAILLER'][0];
         
-        $this->assertEquals(2, $trailler['IDENTIFICATION_FILE_RETURN']);
+        $this->assertEquals(2, $trailler['IDENTIFICACAO_DO_ARQUIVO_DE_RETORNO']);
         
-        $this->assertEquals(237, $trailler['BANK_CODE']);
+        $this->assertEquals(237, $trailler['CODIGO_DO_BANCO']);
     }
 }
